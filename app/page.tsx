@@ -355,7 +355,7 @@ export default function Home() {
     if (!showLetterForm) return
 
     const textLetterH2 = 'Gửi cậu!'
-    const textLetterP = 'Chúc cậu một ngày 20/10 thật tuyệt vời, nhận được nhiều niềm vui và những món quà ý nghĩa nhất.\nTớ thật sự mong cậu luôn được hạnh phúc và rạng rỡ như bây giờ, mãi giữ được nguồn năng lượng tươi tắn, lạc quan đó.\nCậu hãy nhớ là dù có chuyện gì, tớ luôn mong những điều tốt đẹp nhất sẽ đến với cậu.\n\n🥰 Have a great day!\nChúc mừng ngày của cậu nha! ❤️ Love You💗'
+    const textLetterP = 'Chúc cậu một ngày 20/10 thật tuyệt vời, nhận được nhiều niềm vui và những món quà ý nghĩa nhất.\nTớ mong cậu luôn luôn hạnh phúc, rạng rỡ như bây giờ, mãi giữ được nguồn năng lượng tươi tắn, lạc quan đó.\nCậu hãy nhớ là dù có chuyện gì, tớ luôn mong những điều tốt đẹp nhất sẽ đến với cậu.\n\n🥰 Have a great day!\n 💗 Chúc mừng ngày của cậu nha! ❤️'
     
     let titleIndex = 0
     let contentIndex = 0
@@ -530,7 +530,7 @@ export default function Home() {
           <text dy="-2">
             <textPath style={{ fontFamily: 'fantasy' }} xlinkHref="#partialPath" startOffset="12">
               🌹Happy Women&apos;s Day
-              🌹.........................................................................................................................................🌹From With Love 20/10!🌹
+              🌹...................................................................................................................................🌹From With Love 20/10!🌹
             </textPath>
           </text>
 
