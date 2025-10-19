@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <head>
+        <meta charSet="utf-8" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css"
@@ -42,6 +43,10 @@ export default function RootLayout({
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>

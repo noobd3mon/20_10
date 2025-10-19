@@ -355,32 +355,42 @@ export default function Home() {
     if (!showLetterForm) return
 
     const textLetterH2 = 'Gửi cậu!'
-    let indexText = 0
+    const textLetterP = 'Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗'
+    
+    let titleIndex = 0
+    let contentIndex = 0
     let titleInterval: NodeJS.Timeout | null = null
     let contentTimeout: NodeJS.Timeout | null = null
     let contentInterval: NodeJS.Timeout | null = null
     
+    // Reset states
     setLetterTitle('')
     setLetterContent('')
 
+    // Start title typewriter
     titleInterval = setInterval(() => {
-      if (indexText < textLetterH2.length) {
-        setLetterTitle((prev) => prev + textLetterH2[indexText])
-        indexText++
+      if (titleIndex < textLetterH2.length) {
+        const currentText = textLetterH2.substring(0, titleIndex + 1)
+        setLetterTitle(currentText)
+        titleIndex++
       } else {
-        if (titleInterval) clearInterval(titleInterval)
+        if (titleInterval) {
+          clearInterval(titleInterval)
+          titleInterval = null
+        }
         
-        // Start content typewriter after title
-        const textLetterP = 'Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗'
-        let indexTextContent = 0
-        
+        // Start content typewriter after title is complete
         contentTimeout = setTimeout(() => {
           contentInterval = setInterval(() => {
-            if (indexTextContent < textLetterP.length) {
-              setLetterContent((prev) => prev + textLetterP[indexTextContent])
-              indexTextContent++
+            if (contentIndex < textLetterP.length) {
+              const currentText = textLetterP.substring(0, contentIndex + 1)
+              setLetterContent(currentText)
+              contentIndex++
             } else {
-              if (contentInterval) clearInterval(contentInterval)
+              if (contentInterval) {
+                clearInterval(contentInterval)
+                contentInterval = null
+              }
             }
           }, 100)
         }, 500)
