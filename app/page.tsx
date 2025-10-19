@@ -355,7 +355,7 @@ export default function Home() {
     if (!showLetterForm) return
 
     const textLetterH2 = 'Gửi cậu!'
-    const textLetterP = 'Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗'
+    const textLetterP = 'Chúc cậu một ngày 20/10 thật tuyệt vời, nhận được nhiều niềm vui và những món quà ý nghĩa nhất.\nTớ thật sự mong cậu luôn được hạnh phúc và rạng rỡ như bây giờ, mãi giữ được nguồn năng lượng tươi tắn, lạc quan đó.\nCậu hãy nhớ là dù có chuyện gì, tớ luôn mong những điều tốt đẹp nhất sẽ đến với cậu.\n\n🥰 Have a great day!\nChúc mừng ngày của cậu nha! ❤️ Love You💗'
     
     let titleIndex = 0
     let contentIndex = 0
@@ -548,6 +548,7 @@ export default function Home() {
               onMouseLeave={handleMouseLeave}
               onTouchStart={handleMouseEnter}
               onTouchEnd={handleMouseLeave}
+              style={{ touchAction: 'manipulation' }}
               onClick={handleCardClick}
             >
               <div className="envelope"></div>
@@ -576,7 +577,7 @@ export default function Home() {
       {/* Letter Form Modal */}
       <div className={`wrapperLetterForm ${showLetterForm ? 'show' : ''}`}>
         <div className="boxLetter">
-          <i className="fa-solid fa-xmark" onClick={handleCloseForm}></i>
+          <i className="fa-solid fa-xmark" onClick={handleCloseForm} style={{ touchAction: 'manipulation', zIndex: 1001 }}></i>
           <div className="formLetter">
             <div className="heartLetter">
               <div className="heartLetterItem"></div>

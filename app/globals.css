@@ -14,6 +14,8 @@ body {
   touch-action: manipulation;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 .container {
@@ -23,6 +25,14 @@ body {
   height: 97vh;
   width: 100vw;
   overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .container {
+    height: 100vh;
+    padding: 10px;
+  }
 }
 
 .container svg {
@@ -42,8 +52,10 @@ body {
 
 @media (max-width: 480px) {
   .container svg {
-    width: 90%;
-    height: 90%;
+    width: 95%;
+    height: 95%;
+    max-width: 400px;
+    max-height: 400px;
   }
 }
 
@@ -455,6 +467,14 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #fae1dd;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  #castle {
+    padding: 10px;
+  }
 }
 
 .dustDef {
@@ -588,7 +608,7 @@ label {
 }
 
 .wrapperLetterForm {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -596,10 +616,14 @@ label {
   z-index: 1000;
   background: rgba(0, 0, 0, 0.7);
   display: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .wrapperLetterForm.show {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .boxLetter {
@@ -608,6 +632,15 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+}
+
+@media (max-width: 480px) {
+  .boxLetter {
+    padding: 10px;
+    align-items: flex-start;
+    padding-top: 50px;
+  }
 }
 
 .boxLetter .formLetter {
@@ -634,9 +667,10 @@ label {
 @media (max-width: 480px) {
   .boxLetter .formLetter {
     width: 95%;
-    max-width: 320px;
-    min-height: 250px;
-    padding: 10px 8px;
+    max-width: 350px;
+    min-height: 280px;
+    padding: 15px 10px;
+    margin: 10px;
   }
 }
 
@@ -655,6 +689,8 @@ label {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    min-height: 250px;
   }
 }
 
@@ -764,13 +800,18 @@ label {
 
 @media (max-width: 480px) {
   .giftbox {
-    width: 25%;
+    width: 30%;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .giftbox .img {
-    width: 80px;
-    left: 5px;
+    width: 90px;
+    left: auto;
+    right: auto;
     bottom: 0px;
+    position: relative;
   }
 }
 
@@ -787,9 +828,10 @@ label {
 
 @media (max-width: 480px) {
   .textLetter {
-    width: 70%;
+    width: 65%;
     margin-left: auto;
     margin-right: auto;
+    padding: 5px;
   }
 }
 
@@ -825,15 +867,19 @@ label {
 
 @media (max-width: 480px) {
   .textLetter h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 22px;
+    margin-bottom: 10px;
     font-weight: 700;
+    text-align: center;
   }
   .textLetter .contentLetter {
-    font-size: 14px;
-    padding: 0px 8px;
-    line-height: 1.4;
-    margin-top: 8px;
+    font-size: 15px;
+    padding: 0px 10px;
+    line-height: 1.5;
+    margin-top: 10px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
@@ -844,6 +890,23 @@ label {
   color: #fff;
   cursor: pointer;
   font-size: 25px;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.fa-xmark:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+  .fa-xmark {
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    padding: 8px;
+  }
 }
 
 .heartAnimation {
@@ -912,6 +975,16 @@ label {
   color: indianred;
   font-size: 50px;
   top: 80%;
+  text-align: center;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 #text-click.show {
@@ -926,8 +999,9 @@ label {
 
 @media (max-width: 480px) {
   #text-click {
-    font-size: 30px;
+    font-size: 32px;
     top: 85%;
+    padding: 0 20px;
   }
 }
 
