@@ -548,7 +548,6 @@ export default function Home() {
               onMouseLeave={handleMouseLeave}
               onTouchStart={handleMouseEnter}
               onTouchEnd={handleMouseLeave}
-              style={{ touchAction: 'manipulation' }}
               onClick={handleCardClick}
             >
               <div className="envelope"></div>
@@ -577,7 +576,7 @@ export default function Home() {
       {/* Letter Form Modal */}
       <div className={`wrapperLetterForm ${showLetterForm ? 'show' : ''}`}>
         <div className="boxLetter">
-          <i className="fa-solid fa-xmark" onClick={handleCloseForm} style={{ touchAction: 'manipulation', zIndex: 1001 }}></i>
+          <i className="fa-solid fa-xmark" onClick={handleCloseForm}></i>
           <div className="formLetter">
             <div className="heartLetter">
               <div className="heartLetterItem"></div>
