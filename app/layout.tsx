@@ -1,9 +1,17 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: "Women's Day - 20/10",
   description: 'Chúc mừng ngày Phụ nữ Việt Nam 20/10',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#fae1dd',
 }
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 
 export default function Home() {
@@ -12,6 +12,7 @@ export default function Home() {
   const [letterTitle, setLetterTitle] = useState('')
   const [letterContent, setLetterContent] = useState('')
   const [cardTop, setCardTop] = useState(5)
+  const [isMouseOver, setIsMouseOver] = useState(false)
 
   const svgRef = useRef<SVGSVGElement>(null)
   const shapeRef = useRef<SVGPathElement>(null)
@@ -355,55 +356,69 @@ export default function Home() {
 
     const textLetterH2 = 'Gửi cậu!'
     let indexText = 0
+    let titleInterval: NodeJS.Timeout | null = null
+    let contentTimeout: NodeJS.Timeout | null = null
+    let contentInterval: NodeJS.Timeout | null = null
+    
     setLetterTitle('')
+    setLetterContent('')
 
-    const interval = setInterval(() => {
+    titleInterval = setInterval(() => {
       if (indexText < textLetterH2.length) {
         setLetterTitle((prev) => prev + textLetterH2[indexText])
         indexText++
       } else {
-        clearInterval(interval)
+        if (titleInterval) clearInterval(titleInterval)
+        
         // Start content typewriter after title
-        setTimeout(() => {
-          startContentTypewriter()
+        const textLetterP = 'Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗'
+        let indexTextContent = 0
+        
+        contentTimeout = setTimeout(() => {
+          contentInterval = setInterval(() => {
+            if (indexTextContent < textLetterP.length) {
+              setLetterContent((prev) => prev + textLetterP[indexTextContent])
+              indexTextContent++
+            } else {
+              if (contentInterval) clearInterval(contentInterval)
+            }
+          }, 100)
         }, 500)
       }
     }, 200)
 
-    return () => clearInterval(interval)
+    return () => {
+      if (titleInterval) clearInterval(titleInterval)
+      if (contentTimeout) clearTimeout(contentTimeout)
+      if (contentInterval) clearInterval(contentInterval)
+    }
   }, [showLetterForm])
 
-  const startContentTypewriter = () => {
-    const textLetterP =
-      'Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗'
-    let indexTextContent = 0
-    setLetterContent('')
-
-    const interval = setInterval(() => {
-      if (indexTextContent < textLetterP.length) {
-        setLetterContent((prev) => prev + textLetterP[indexTextContent])
-        indexTextContent++
-      } else {
-        clearInterval(interval)
-      }
-    }, 100)
-  }
-
-  const handleRoseClick = () => {
+  const handleRoseClick = useCallback(() => {
     setShowRose(false)
     setShowCastle(true)
     setShowSvg(true)
-  }
+  }, [])
 
-  const handleCardClick = () => {
+  const handleCardClick = useCallback(() => {
     setShowLetterForm(true)
-  }
+  }, [])
 
-  const handleCloseForm = () => {
+  const handleCloseForm = useCallback(() => {
     setShowLetterForm(false)
     setLetterTitle('')
     setLetterContent('')
-  }
+  }, [])
+
+  const handleMouseEnter = useCallback(() => {
+    setIsMouseOver(true)
+    setCardTop(-90)
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    setIsMouseOver(false)
+    setCardTop(5)
+  }, [])
 
   return (
     <>
@@ -519,8 +534,10 @@ export default function Home() {
           <div className="letter">
             <div
               className="valentines"
-              onMouseEnter={() => setCardTop(-90)}
-              onMouseLeave={() => setCardTop(5)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleMouseEnter}
+              onTouchEnd={handleMouseLeave}
               onClick={handleCardClick}
             >
               <div className="envelope"></div>
